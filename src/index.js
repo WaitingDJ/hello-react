@@ -6,7 +6,7 @@ import List from './list/List'
 import ComponentApp from './comment/CommentApp'
 import Clock from './clock/Clock'
 import LikeButton from './likeButton/LikeButton'
-import FocusInput from './input/FocusInput'
+import PropsChildren from './propsChildren/PropsChildren'
 
 class Index extends Component {
 
@@ -14,11 +14,17 @@ class Index extends Component {
         return (
             <div className='wrapper' >
                 <ComponentApp />
-                <FocusInput />
                 <Clock />
                 <LikeButton wording={{ likedText: '已赞', unlikedText: '点赞' }}
                     onClick={() => { console.log('click over') }} />
                 <List />
+                <PropsChildren children={
+                    <div>
+                        <h2>React.js 小书</h2>
+                        <div>开源、免费、专业、简单</div>
+                        订阅：<input />
+                    </div>
+                } />
             </div>
         )
     }
