@@ -12,21 +12,28 @@ class CommentApp extends Component {
 
     componentWillMount () {
         this._loadComments()
-      }
-    
-      _loadComments () {
+    }
+    /**
+     * 读取本地缓存
+     */
+    _loadComments () {
         let comments = localStorage.getItem('comments')
         if (comments) {
-          comments = JSON.parse(comments)
-          this.setState({ comments })
+            comments = JSON.parse(comments)
+            this.setState({ comments })
         }
-      }
-    
-      _saveComments (comments) {
+    }
+    /**
+     * 设置本地缓存
+     */
+    _saveComments (comments) {
         localStorage.setItem('comments', JSON.stringify(comments))
-      }
-    
-      handleSubmitComment (comment) {
+    }
+    /**
+     * 
+     * @param {*} comment 
+     */
+    handleSubmitComment (comment) {
         if (!comment) return
         if (!comment.username) return alert('请输入用户名')
         if (!comment.content) return alert('请输入评论内容')
@@ -34,16 +41,16 @@ class CommentApp extends Component {
         comments.push(comment)
         this.setState({ comments })
         this._saveComments(comments)
-      }
-      /**
-       * 执行删除评论,并且更新到本地缓存
-       */
-      handleDeleteComment(index){
+    }
+    /**
+     * 执行删除评论,并且更新到本地缓存
+     */
+    handleDeleteComment(index){
         const comments = this.state.comments
         comments.splice(index, 1)
         this.setState({ comments })
         this._saveComments(comments)
-      }
+    }
 
     render() {
         return (
