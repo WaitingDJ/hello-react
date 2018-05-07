@@ -35,13 +35,22 @@ class CommentApp extends Component {
         this.setState({ comments })
         this._saveComments(comments)
       }
-
+      /**
+       * 执行删除评论,并且更新到本地缓存
+       */
+      handleDeleteComment(index){
+        const comments = this.state.comments
+        comments.splice(index, 1)
+        this.setState({ comments })
+        this._saveComments(comments)
+      }
 
     render() {
         return (
             <div className='wrapper'>
                 <CommentInput onSubmit={this.handleSubmitComment.bind(this)} />
-                <CommentList comments={this.state.comments} />
+                <CommentList comments={this.state.comments}
+                    onDeleteComment={this.handleDeleteComment.bind(this)} />
             </div>
         );
     }
