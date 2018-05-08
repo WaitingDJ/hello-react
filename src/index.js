@@ -4,6 +4,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import ComponentApp from './comment/CommentApp'
 import LikeButton from './likeButton/LikeButton'
+import Context from './context/Context'
 
 class Index extends Component {
 
@@ -13,6 +14,7 @@ class Index extends Component {
                 <ComponentApp />
                 <LikeButton wording={{ likedText: '已赞', unlikedText: '点赞' }}
                     onClick={() => { console.log('click over') }} />
+                <Context />
             </div>
         )
     }
