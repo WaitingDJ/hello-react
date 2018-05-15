@@ -1,26 +1,16 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
-import ComponentApp from './comment/CommentApp'
-import LikeButton from './likeButton/LikeButton'
-import Context from './context/Context'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import CommentApp from './containers/CommentApp'
+import commentsReducer from './reducers/comments'
+import './index.css'
 
-class Index extends Component {
+const store = createStore(commentsReducer)
 
-    render() {
-        return (
-            <div className='wrapper' >
-                <ComponentApp />
-                <LikeButton wording={{ likedText: '已赞', unlikedText: '点赞' }}
-                    onClick={() => { console.log('click over') }} />
-                <Context />
-            </div>
-        )
-    }
-}
-
-ReactDOM.render(< Index />, document.getElementById('root'))
-
-//生产环境!的资源的缓存,更快的获取资源,离线的情况下也可以访问应用
-registerServiceWorker();
+ReactDOM.render(
+  <Provider store={store}>
+    <CommentApp />
+  </Provider>,
+  document.getElementById('root')
+);
